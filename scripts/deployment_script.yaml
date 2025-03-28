@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edge-cdn
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: edge-cdn
+  template:
+    metadata:
+      labels:
+        app: edge-cdn
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+      - name: redis
+        image: redis:latest
+        ports:
+        - containerPort: 6379
